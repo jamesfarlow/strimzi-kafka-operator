@@ -748,6 +748,18 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
+                <groupId>io.javaoperatorsdk</groupId>
+                <artifactId>jenvtest</artifactId>
+                <version>0.9.1</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.javaoperatorsdk</groupId>
+                <artifactId>jenvtest-fabric8-client-support</artifactId>
+                <version>0.9.1</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
                 <groupId>com.squareup.okhttp3</groupId>
                 <artifactId>mockwebserver</artifactId>
                 <version>${mockwebserver.version}</version>
