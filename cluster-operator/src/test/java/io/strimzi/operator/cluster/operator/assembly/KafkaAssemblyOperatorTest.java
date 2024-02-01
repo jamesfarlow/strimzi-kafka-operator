@@ -1153,10 +1153,10 @@ public class KafkaAssemblyOperatorTest {
 
         if (originalCruiseControl != null) {
             when(mockDepOps.get(clusterNamespace, CruiseControlResources.componentName(clusterName))).thenReturn(
-                    originalCruiseControl.generateDeployment(true, null, null)
+                    originalCruiseControl.generateDeployment(Map.of(), true, null, null)
             );
             when(mockDepOps.getAsync(clusterNamespace, KafkaResources.entityOperatorDeploymentName(clusterName))).thenReturn(
-                    Future.succeededFuture(originalCruiseControl.generateDeployment(true, null, null))
+                    Future.succeededFuture(originalCruiseControl.generateDeployment(Map.of(), true, null, null))
             );
             when(mockDepOps.waitForObserved(any(), anyString(), anyString(), anyLong(), anyLong())).thenReturn(
                     Future.succeededFuture()
@@ -1218,8 +1218,8 @@ public class KafkaAssemblyOperatorTest {
         );
 
         // Mock broker scale down operation
-        PreventBrokerScaleDownCheck operations = supplier.brokerScaleDownOperations;
-        when(operations.canScaleDownBrokers(any(), any(), any(), any(), any())).thenReturn(Future.succeededFuture(Set.of()));
+        BrokersInUseCheck operations = supplier.brokersInUseCheck;
+        when(operations.brokersInUse(any(), any(), any(), any())).thenReturn(Future.succeededFuture(Set.of()));
 
         // Now try to update a KafkaCluster based on this CM
         Checkpoint async = context.checkpoint();
